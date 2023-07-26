@@ -31,6 +31,7 @@ namespace engine {
             case virtual_key::down:
                 return VK_DOWN;
         }
+        return 0;
     }
 
     bool is_key_pressed(virtual_key key) {
@@ -45,6 +46,7 @@ namespace engine {
             case mouse_button::right:
                 return VK_RBUTTON;
         }
+        return 0;
     }
 
     bool is_mouse_button_pressed(mouse_button button) {
@@ -52,12 +54,12 @@ namespace engine {
         return is_active && (GetAsyncKeyState(wnd_key) != 0);
     }
 
-    cursor_coordinate get_cursor_x() {
-        return cursor_pos.x;
+    screen_coordinate get_cursor_x() {
+        return static_cast<screen_coordinate>(cursor_pos.x);
     }
 
-    cursor_coordinate get_cursor_y() {
-        return cursor_pos.y;
+    screen_coordinate get_cursor_y() {
+        return static_cast<screen_coordinate>(cursor_pos.y);
     }
 
     void schedule_quit() {

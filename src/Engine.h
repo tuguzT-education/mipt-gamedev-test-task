@@ -3,19 +3,22 @@
 #include <cstdint>
 
 namespace engine {
-    constexpr size_t screen_width = 1024u;
-    constexpr size_t screen_height = 768u;
+    using screen_coordinate = std::uint16_t;
+    using seconds = float;
 
-    struct color {
-        uint8_t blue;
-        uint8_t green;
-        uint8_t red;
-        uint8_t unused;
+    constexpr screen_coordinate screen_width = 1024u;
+    constexpr screen_coordinate screen_height = 768u;
+
+    struct color final {
+        std::uint8_t blue;
+        std::uint8_t green;
+        std::uint8_t red;
+        std::uint8_t alpha;
     };
 
     extern color buffer[screen_height][screen_width];
 
-    enum class virtual_key : uint8_t {
+    enum class virtual_key : std::uint8_t {
         escape,
         space,
         left,
@@ -24,21 +27,18 @@ namespace engine {
         down,
     };
 
-    enum class mouse_button : uint8_t {
+    enum class mouse_button : std::uint8_t {
         left,
         right,
     };
-
-    using cursor_coordinate = int;
-    using seconds = float;
 
     bool is_key_pressed(virtual_key key);
 
     bool is_mouse_button_pressed(mouse_button button);
 
-    cursor_coordinate get_cursor_x();
+    screen_coordinate get_cursor_x();
 
-    cursor_coordinate get_cursor_y();
+    screen_coordinate get_cursor_y();
 
     void initialize();
 

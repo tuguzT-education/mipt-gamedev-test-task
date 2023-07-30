@@ -56,7 +56,7 @@ namespace engine {
 }
 
 namespace game {
-    player current_player{{0, 0},
+    player current_player{{engine::screen_width / 2.f, engine::screen_height / 2.f},
                           100,
                           {0, 0, 255, 255}};
 }
